@@ -1,0 +1,39 @@
+.Header_container{
+    width: 100%;
+    height: 86px;
+    background-color: white;
+    padding: 0 4% 0 4%;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+@media screen and (max-width: 1300px) {
+    .Header_container{
+         padding: 0 5px 0 5px;
+    }
+}
+
+
+
+@media screen and (max-width: 550px) {
+    .Header_container .search_container{
+        width: 100%;
+    }
+    .Header_container{
+        flex-wrap: wrap;
+    }
+
+    .Header_container{
+        order: 1;
+    }
+    .search_container{
+        order: 3;
+    }
+    .icon_box{
+        order: 2;
+    }
+}

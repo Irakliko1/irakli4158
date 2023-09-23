@@ -1,0 +1,15 @@
+.brand_container{
+    min-width: 116px;
+    width: 10%;
+    height: auto;
+}
+
+
+@media screen and (max-width: 1300px) {
+    
+    .brand_container img{
+        width: 116px;
+    }
+}
+
+
