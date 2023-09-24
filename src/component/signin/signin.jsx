@@ -15,12 +15,11 @@ const Signin = () => {
   return (
     <div className='all_content5'>
         <div className='all_content52'>
-           
             <div className="container5">
             <div className="forms5">
             <div className="form-content5">
                 <div className="login-form5">
-                <div className='brand5'>
+                <div className='brand5 logo-animation'>
             <Link to={'/'}>
                  <img src={brend} alt="" />
             </Link>
@@ -38,7 +37,7 @@ const Signin = () => {
                     </div>
                     <div className="text5"><>Forgot password?</></div>
                     <div className='login_with'>
-                        <span>Or login with</span>
+                        <span>Or login with:</span>
                     </div>
                     <div className='social_icons'>
                         <Link to={'https://facebook.com/'}><img src={facebook} alt="" /></Link>
@@ -53,7 +52,7 @@ const Signin = () => {
                     </div>
                 </form>
                 </div>
-                
+
             </div>
             </div>
         </div>

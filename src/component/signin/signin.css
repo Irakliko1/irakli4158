@@ -13,93 +13,13 @@
   position: relative;
   max-width: 850px;
   width: 100%;
-  background: #fff;
+  background: #d1f6f2;
   padding: 40px 30px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   perspective: 2700px;
   border-radius: 18px;
 }
-.container5 .cover5{
-  position: absolute;
-  top: 0;
-  left: 50%;
-  height: 100%;
-  width: 50%;
-  z-index: 98;
-  transition: all 1s ease;
-  transform-origin: left;
-  transform-style: preserve-3d;
-}
 
- .container5 .cover5 .front5,
- .container5 .cover5 .back5{
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
-.cover5 .back5{
-  transform: rotateY(180deg);
-  backface-visibility: hidden;
-}
-.container5 .cover5::before,
-.container5 .cover5::after{
-  content: '';
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: #7d2ae8;
-  opacity: 0.5;
-  z-index: 12;
-}
-.container5 .cover5::after{
-  opacity: 0.3;
-  transform: rotateY(180deg);
-  backface-visibility: hidden;
-}
-.container5 .cover5 img{
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  z-index: 10;
-}
-.container5 .cover5 .text5{
-  position: absolute;
-  z-index: 130;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.cover5 .text5 .text-15,
-.cover .text .text-2{
-  font-size: 26px;
-  font-weight: 600;
-  color: #fff;
-  text-align: center;
-}
-.cover5 .text5 .text-2{
-  font-size: 15px;
-  font-weight: 500;
-}
-.container5 .forms5{
-  height: 100%;
-  width: 100%;
-  background: #fff;
-}
-.container5 .form-content5{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.form-content5 .login-form5,
-.form-content5 .signup-form5{
-  width: 100%;
-}
 .forms5 .form-content5 .title5{
   position: relative;
   font-size: 24px;
@@ -130,8 +50,9 @@
   padding: 0 20px;
   font-size: 16px;
   font-weight: 500;
-  border-bottom: 2px solid rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
   transition: all 0.3s ease;
+  background-color: #d1f6f2;
 }
 .form-content5 .input-box5 input:focus,
 .form-content5 .input-box5 input:valid{
@@ -230,6 +151,7 @@
     justify-content: center;
     background-image: url(../../assets/background/blue.png);
     background-position: 50% 0;
+    
 }
 
 .all_content52{
@@ -237,6 +159,7 @@
     min-width: 360px;
     max-width: 800px;
     padding: 30px;
+    
 }
 
 
@@ -291,5 +214,25 @@
 .social_icons a:hover img {
   transform: scale(1.2); 
 }
+
+
+/*  Animation fro logos*/
+.logo-animation img:hover {
+  animation: bounce 2s ease infinite; 
+}
+
+@keyframes bounce {
+  0%, 25%, 50%, 75%, 100% {
+    transform: translateY(0); 
+  }
+  40% {
+    transform: translateY(-15px); 
+  }
+  60% {
+    transform: translateY(-10px); 
+  }
+}
+
+
 
 

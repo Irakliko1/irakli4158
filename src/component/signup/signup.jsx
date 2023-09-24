@@ -14,7 +14,7 @@ const Signup = () => {
             <div className="forms5">
             <div className="form-content5">
                 <div className="login-form5">
-           <div className='brand5'>
+           <div className='brand5 logo-animation'>
             <Link to={'/'}>
                  <img src={brend} alt="" />
             </Link>
