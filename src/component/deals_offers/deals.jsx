@@ -2,6 +2,7 @@ import React from 'react'
 import './deals.css'
 import Timer from '../timer/timer'
 import Laptop from '../../assets/prodact/laptop.png'
+import { Link } from 'react-router-dom'
 
 const Deals = () => {
   return (
@@ -11,7 +12,9 @@ const Deals = () => {
       </div>
       <div className='prodact_container'>
         <div className='sale_box'>
+                <Link to={'/productview'}>
                 <img src={Laptop} alt="Laptop" />
+                </Link>
                 <span className='product_description'>Laptops</span>        
                 <span className='sale_percent'> -99%</span>
         </div>
