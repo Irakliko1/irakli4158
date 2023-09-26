@@ -20,8 +20,13 @@
     row-gap: 8px;
     border: 1px solid #DEE2E7;
     border-radius: 6px;
-    padding: 0 0 5px;
+    padding:  10px;
    
+}
+
+.sale_box img{
+    width: 100px;
+    height: 110px;
 }
 
 .prodact_container{
@@ -31,8 +36,7 @@
     width: 100%;
     background-color: white;
     border-radius: 6px;
-    overflow-x: scroll;
-    
+    overflow-x: scroll
     
 }
 
