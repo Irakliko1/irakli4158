@@ -42,7 +42,6 @@ const Deals = () => {
                 {/* <span className='product_description'>Laptops</span>         */}
                 <span className='sale_percent'> {offer.newPrice} $</span>
         </div>
-
         )
 
       })}

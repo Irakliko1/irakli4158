@@ -1,6 +1,20 @@
 .navigation_container {
     width: 20%;
-
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.navigation_container::-webkit-scrollbar {
+    height: 10px;
+}
+ 
+.navigation_container::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(177, 167, 167, 0.3); 
+    
+}
+ 
+.navigation_container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px #fff 
 }
 .navigation_container ul {
     display: flex;
@@ -16,6 +30,7 @@
     align-items: center;
     cursor: pointer;
     font-weight: 400;
+    padding: 15px;
 
 }
 .navigation_container ul li:hover {
@@ -69,7 +84,8 @@
     }
     .navigation_container ul li {
         min-width: 85px;
-        height: 30px;
+        
 
     }
+    
 }

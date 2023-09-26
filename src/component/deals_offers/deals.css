@@ -21,7 +21,14 @@
     border: 1px solid #DEE2E7;
     border-radius: 6px;
     padding:  10px;
+    transition: transform .4s;
    
+}
+
+.sale_box:hover{
+    background-color: white;
+    z-index: 1;
+    transform: scale(1.2);
 }
 
 .sale_box img{
