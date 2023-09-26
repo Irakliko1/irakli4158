@@ -32,6 +32,7 @@
     flex-direction: column;
     row-gap: 10px;
     width: 110px;
+    cursor: pointer;
 }
 .about_box .download {
     width: 90px;
@@ -114,4 +115,85 @@
 }
 .download img{
     width: 100%;
+}
+
+.category_ul{
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 0;
+}
+
+
+.brand_ul{
+    flex-direction: column;
+    gap: 5px;
+    padding: 15px 0;
+    list-style: none; 
+    overflow-y: scroll;
+    height: 300px;
+}
+
+  
+  .brand_ul li {
+    margin: 8px 0; 
+  }
+  
+  .brand_ul label {
+    display: flex; 
+    align-items: center;
+    cursor: pointer; 
+  }
+  
+  .brand_ul input[type="checkbox"] {
+    margin-right: 8px; 
+  }
+  
+  
+  .rotate {
+    transform: rotate(90deg); 
+  }
+  
+ 
+.brand_ul input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 16px; 
+    height: 16px;
+    border: 2px solid black; 
+    border-radius: 3px;
+    outline: none; 
+    cursor: pointer; 
+  }
+  
+
+  .brand_ul input[type="checkbox"]:checked {
+    background-color: #127FFF; 
+    border-color: #127FFF;
+  }
+  
+  
+  .brand_ul input[type="checkbox"]:checked::before {
+    content: '\2713';
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin: 1px; 
+    text-align: center;
+    line-height: 10px;
+    color: white;
+  }
+  
+  .brand_ul::-webkit-scrollbar {
+    height: 10px;
+}
+ 
+.brand_ul::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(177, 167, 167, 0.3); 
+
+}
+ 
+.brand_ul::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 1px #000000 
 }

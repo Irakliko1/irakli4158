@@ -100,6 +100,10 @@
     border: 1px solid #DEE2E7;
     height: 230px;
     border-radius: 6px;
+    transition: transform .4s;
+}
+.nav_2:hover{
+    transform: scale(1.1);
 }
 
 @media screen and (max-width: 950px) {
@@ -191,7 +195,7 @@
 
 .prise_description {
     width: 80%;
-    padding: 30px;
+    padding: 15px 30px;
 }
 .favorite {
     display: flex;
@@ -202,8 +206,8 @@
 }
 
 .favorite img {
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
 }
 .prise_description .span1 {
     font-size: 1em;
