@@ -1,0 +1,42 @@
+/* PriceRangeSlider.css */
+
+.price-range-slider {
+    width: 80%; /* Adjust the width of the slider container */
+    margin: 20px auto; /* Center the slider horizontally */
+  }
+  
+  /* Styling for the slider input */
+  input[type="range"] {
+    width: 100%;
+    height: 10px;
+    background: #d3d3d3;
+    outline: none; /* Remove the outline on focus */
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  /* Styling for the slider thumb (handle) */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  /* Styling for the slider value display */
+  .slider-values {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  /* Style for the individual price values */
+  .slider-values span {
+    font-weight: bold;
+    color: #007bff;
+  }
+  

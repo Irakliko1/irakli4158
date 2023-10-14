@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './filter.css';
 import Chevron from '../../assets/logo/chevron.png';
-// import PriceRange from '../prise_range/prise';
 import rait5 from '../../assets/filterpageicons/rating5.png';
 import rait4 from '../../assets/filterpageicons/rating4.png';
 import rait3 from '../../assets/filterpageicons/rating3.png';
@@ -9,18 +8,36 @@ import rait2 from '../../assets/filterpageicons/rating2.png';
 import gridview from '../../assets/filterpageicons/gridview.png';
 import dot from '../../assets/filterpageicons/dot.png';
 import listview from '../../assets/filterpageicons/listview.png'
-import fav from '../../assets/filterpageicons/fav.png';
+import fav from '../../assets/prodacts/add-to-cart-3046.png';
 import axios from 'axios';
+
+import DualRangeSlider from '../pricerangeslider';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 
 
 const Filter = () => {
-    const [offers, setOffers] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [productes, setProductes] = useState([]);
+
+    const [isCategoryOpen, setCategoryOpen] = useState(false);
+    const [isBrandsOpen, setBrandsOpen] = useState(false);
+    const [isPriceRangeOpen, setPriceRangeOpen] = useState(false);
+    const [isRatingOpen, setRatingOpen] = useState(false);
+
+    const [searchParams, setSearchParams] = useSearchParams()
+    const params = Object.fromEntries([...searchParams]);
+    const navigate = useNavigate()
+
+    const token = JSON.parse(localStorage.getItem('token'))
+
+
+
     useEffect(() => {
       axios
-        .get('https://digitalamazonproject.azurewebsites.net/api/product/categories      ')
+        .get('https://amazon-digital-prod.azurewebsites.net/api/product/categories')
         .then((response) => {
-          setOffers(response.data ) ; 
+            setCategories(response.data ) ; 
         })
         .catch((error) => {
           console.error('API request error:', error);
@@ -28,31 +45,46 @@ const Filter = () => {
     }, []);
 
 
-
-    const [productes, setProductes] = useState([]);
     useEffect(() => {
       axios
-        .get('https://digitalamazonproject.azurewebsites.net/api/product/products')
+        .get( `https://amazon-digital-prod.azurewebsites.net/api/product/products?CategoryId=${params.currentCategory? params.currentCategory : ('')}&PriceFrom=${('')}&PriceTo=${('')}`)
         .then((response) => {
             setProductes(response.data ) ; 
         })
         .catch((error) => {
           console.error('API request error:', error);
         });
-    }, []);
+    }, [searchParams]);
     
-    
-    
+    const handleCurrentCategory = (id) => {
+        setSearchParams({
+            ...params,
+            currentCategory: id,
+        })
+  };
 
-  // State variables for controlling open/close state of filter sections
-  const [isCategoryOpen, setCategoryOpen] = useState(false);
-  const [isBrandsOpen, setBrandsOpen] = useState(false);
-  const [isFeaturesOpen, setFeaturesOpen] = useState(false);
-  const [isPriceRangeOpen, setPriceRangeOpen] = useState(false);
-  const [isConditionOpen, setConditionOpen] = useState(false);
-  const [isRatingOpen, setRatingOpen] = useState(false);
+  const handlelink = (id) => {navigate(`/productview/${id}`)}
 
-  // Functions to toggle the open/close state of filter sections
+  const handleAddToCart = (id) => {
+    axios
+            .post('https://amazon-digital-prod.azurewebsites.net/api/cart/addincart',
+            {
+                productId: id,
+            },
+            {headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            },}
+            )
+            .then((response) => {
+              console.log(response.ok)
+            })
+      .catch((error) => {
+        console.error('API request error:', error);
+      });
+  }
+    
+    
   const toggleCategory = () => {
     setCategoryOpen(!isCategoryOpen);
   };
@@ -61,16 +93,8 @@ const Filter = () => {
     setBrandsOpen(!isBrandsOpen);
   };
 
-  const toggleFeatures = () => {
-    setFeaturesOpen(!isFeaturesOpen);
-  };
-
   const togglePriceRange = () => {
     setPriceRangeOpen(!isPriceRangeOpen);
-  };
-
-  const toggleCondition = () => {
-    setConditionOpen(!isConditionOpen);
   };
 
   const toggleRating = () => {
@@ -87,9 +111,9 @@ const Filter = () => {
                     <img src={Chevron} alt="" className={isCategoryOpen ? 'rotate' : ''} />
                 </div>
                 <ul className='category_ul' style={{ display: isCategoryOpen ? 'flex' : 'none' }}>
-                {offers.map((navigation) => {
+                {categories.map((category) => {
           return (
-              <li>{navigation.name}</li>
+              <li onClick={()=>{handleCurrentCategory(category.id)}}>{category.name}</li>
               )
             
           })}
@@ -106,18 +130,14 @@ const Filter = () => {
                 <ul className='brand_ul' style={{ display: isBrandsOpen ? 'flex' : 'none' }}>
                 {productes.map((product) => {
         return (
-
-
                     <li>
                         <label>
                             <input type="checkbox" name="" id="" />{product.brand}
                         </label>
                     </li>
-        )
-
-      })}
-                </ul>
-                
+           )
+              })}
+                </ul>       
             </div>
 
            
@@ -128,45 +148,11 @@ const Filter = () => {
                     <img src={Chevron} alt="" className={isPriceRangeOpen ? 'rotate' : ''} />
                 </div>
                 <div className='priserange_filter' style={{ display: isPriceRangeOpen ? 'block' : 'none' }}>
-                    {/* <PriceRangeSlider /> */}
+                    <DualRangeSlider/>
                 </div>
             </div>
 
-            {/* Condition Filter
-            <div className={`filter_box ${isConditionOpen ? 'open' : ''}`}>
-                <div className='nav_head' onClick={toggleCondition}>
-                    <span>Condition</span>
-                    <img src={Chevron} alt="" className={isConditionOpen ? 'rotate' : ''} />
-                </div>
-                <ul style={{ display: isConditionOpen ? 'block' : 'none' }}>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="" id="" />Metallic
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="" id="" />Plastic cover
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="" id="" />8GB Ram
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="" id="" />Super power
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="" id="" />Large Memory
-                        </label>
-                    </li>
-                </ul>
-                {isConditionOpen && <span className='seeall'>See all</span>}
-            </div> */}
+        
 
             {/* Rating Filter */}
             <div className={`filter_box ${isRatingOpen ? 'open' : ''}`}>
@@ -214,16 +200,16 @@ const Filter = () => {
 
             <div className='nav_box_container'>
              {/* Products */}
-             {productes.map((prodict) => {
+             {productes.map((product) => {
         return (
                 <div className='nav_2'>
                     <div className='product_img1'>
-                        <img src={prodict.images} alt="" />
+                        <img onClick={()=>{handlelink(product.id)}} src={product.images} alt="" />
                     </div>
                     <div className='prise_description'>
-                        <span className='span1'>{prodict.name}</span>
+                        <span onClick={()=>{handlelink(product.id)}} className='span1'>{product.name}</span>
                         <div className='span_box'>
-                            <span className='new_prise'>${prodict.price}</span>
+                            <span className='new_prise'>${product.price}</span>
                             <span className='old_prise'> <del>$1199.00</del></span>
                         </div>
                         <div className='rating_box'>
@@ -239,14 +225,14 @@ const Filter = () => {
                             </div>
                         </div>
                         <div className='spans_cont'>
-                            <span className='lorem'> {prodict.brand} {prodict.model}</span>
-                            <span className='view_detail'>View details</span>
+                            <span className='lorem'> {product.brand} {product.model}</span>
+                            <span onClick={()=>{handlelink(product.id)}} className='view_detail'>View details</span>
                         </div>
                     </div>
 
                     
                     <div className='favorite'>
-                         <img src={fav} alt="" />
+                        <img style={{cursor:'pointer'}} src={fav} alt="addtocart" onClick={() => {handleAddToCart(product.id)}}/>
                     </div>
                 </div>
         )

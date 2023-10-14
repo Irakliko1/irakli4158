@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './signin.css'
 import 'font-awesome/css/font-awesome.min.css';
+import axios from 'axios';
 import { FaEnvelope,  FaLock,    } from 'react-icons/fa';
 import brend from '../../assets/logo/brand.png'
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import facebook from '../../assets/loginicons/facebook.png'
 import twiter from '../../assets/loginicons/twitter.png'
 import linkedin from '../../assets/loginicons/linkedin.png'
@@ -11,7 +12,31 @@ import google from '../../assets/loginicons/google.png'
 
 
 
+
 const Signin = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const navigate = useNavigate()
+    
+    const handleSignin = (e) => {
+        e.preventDefault();
+        axios
+            .post('https://amazon-digital-prod.azurewebsites.net/api/User/logIn', {
+                email: email,
+                password: password,
+            }, {
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then((response) => {
+                localStorage.setItem('token', JSON.stringify(response.data.jwt));
+                setEmail('');
+                setPassword('');
+                navigate('/');
+            })
+            .catch((error) => {
+                console.error('API request error:', error);
+            });
+        };
   return (
     <div className='all_content5'>
         <div className='all_content52'>
@@ -25,15 +50,15 @@ const Signin = () => {
             </Link>
            </div>
                 <div className="title5">Login</div>
-                <form action="#">
+                <form onSubmit={(e)=>{handleSignin(e)}}>
                     <div className="input-boxes5">
                     <div className="input-box5">
                         <FaEnvelope className='sigin_icons5' />
-                        <input type="text" placeholder="Enter your email" required />
+                        <input value={email} onChange={(e)=>{setEmail(e.target.value)}} type="email" placeholder="Enter your email" required />
                     </div>
                     <div className="input-box5">
                         <FaLock className='sigin_icons5'/>
-                        <input type="password" placeholder="Enter your password" required />
+                        <input value={password} onChange={(e)=>{setPassword(e.target.value)}} type="password" placeholder="Enter your password" required />
                     </div>
                     <div className="text5"><>Forgot password?</></div>
                     <div className='login_with'>

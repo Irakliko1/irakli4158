@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './detale.css';
-import product1 from '../../assets/prodact/shirt1.png';
-import product3 from '../../assets/prodact/shirt2.png';
+import axios from 'axios';
 import aviable from '../../assets/filterpageicons/Aviable.png';
 import favorite from '../../assets/filterpageicons/fav.png';
 import basket from '../../assets/filterpageicons/basket.png';
@@ -9,37 +8,57 @@ import chat from '../../assets/prodacts/message.png';
 import circle from '../../assets/filterpageicons/dot.png';
 import star from '../../assets/filterpageicons/rating4.png';
 
-const Detale = () => {
+const Detale = ({product, images}) => {
+  const token = JSON.parse(localStorage.getItem('token'))
 
-  const [selectedImage, setSelectedImage] = useState(product1);
+  const [selectedImage, setSelectedImage] = useState('');
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
 
+  useEffect(() => {
+    setSelectedImage(images[0])
+  },[product])
+  
+  const handleAddToCart = (id) => {
+    axios
+            .post('https://amazon-digital-prod.azurewebsites.net/api/cart/addincart',
+            {
+                productId: id,
+            },
+            {headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            },}
+            )
+            .then((response) => {
+              console.log(response.ok)
+            })
+      .catch((error) => {
+        console.error('API request error:', error);
+      });
+  }
+
   return (
     <div className='about_product_container'>
-       {/* // პროდუქტის შესახებ ინფორმაცია , სურათები და ფასი*/}
     <div className='about_product_container2'>
       <div className='image_container5'>
         <div className='main_image6'>
-          <img src={selectedImage} alt='' />
+          <img src={!selectedImage? images[0] : selectedImage} alt='' />
         </div>
 
         <div className='small_images5'>
-          <img src={product3} alt='' onClick={() => handleImageClick(product3)} />
-          <img src={product3} alt='' onClick={() => handleImageClick(product3)} />
-          <img src={product3} alt='' onClick={() => handleImageClick(product3)} />
-          <img src={product3} alt='' onClick={() => handleImageClick(product3)} />
-          <img src={product3} alt='' onClick={() => handleImageClick(product3)} />
-          <img src={product3} alt='' onClick={() => handleImageClick(product3)} />
+          {images.map((image) => {
+            return <img src={image} alt='' onClick={() => handleImageClick(image)} />
+          })}
         </div>
       </div>
 
       <div className='info_container'>
         <div className='info_1'>
           <img src={aviable} alt="" />
-          <p>Mens Long Sleeve T-shirt Cotton Base Layer Slim Muscle</p>
+          <p>{product.name}</p>
         </div>
 
         <div className='info_2'>
@@ -59,15 +78,15 @@ const Detale = () => {
         <div className='info_3'>
           <div className='pink'>
             <div className='pink_box'> 
-              <p>$98.00</p>
+              <p>${product.price}</p>
               <span>50-100 pcs</span>
             </div>
             <div className='pink_box'> 
-              <p>$98.00</p>
+              <p>${Math.floor(product.price - ((product.price * 10) /100 ))}</p>
               <span>50-100 pcs</span>
             </div>
             <div className='pink_box'> 
-              <p>$98.00</p>
+              <p>${Math.floor(product.price - ((product.price * 20) /100 ))}</p>
               <span>50-100 pcs</span>
             </div>
           </div>
@@ -106,7 +125,7 @@ const Detale = () => {
             </div>
             
             <div className='add_cart_butt_cont'>
-                <button>Add To Cart  </button>
+                <button onClick={() => {handleAddToCart(product.id)}}>Add To Cart</button>
                 <img src={favorite} alt="" />
 
             </div>

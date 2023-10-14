@@ -44,6 +44,19 @@
     flex-direction: row;
     column-gap: 10px;
 }
+.cart_product_box .cart_image_container img {
+    width: 150px;
+    height: 130px;
+    object-fit: contain;
+}
+@media  (max-width:750px) {
+    .cart_product_box .cart_image_container img{
+       width: 70px;
+    }
+    
+   
+    
+}
 .cart_product_box2 {
     display: flex;
     flex-direction: column;

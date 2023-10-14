@@ -1,12 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './signup.css'
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { FaEnvelope, FaLock, FaUser } from 'react-icons/fa';
 import brend from '../../assets/logo/brand.png'
-import { Link } from 'react-router-dom';
 
 
+const   Signup = () => {
+    const [user, setUser]= useState('')
+    const [email, setEmail]= useState('')
+    const [password, setPassword]= useState('')
+    const [rePassword, setRePassword]= useState('')
 
-const Signup = () => {
+    const handleSignup = (e) => {
+        e.preventDefault()
+        axios
+            .post('https://amazon-digital-prod.azurewebsites.net/api/user/registerUser',
+            {
+                userName: user,
+                password: password,
+                email: email
+            },
+            {headers: {'Content-Type': 'application/json'}}
+            )
+            .then(() => {
+                setUser ('')
+                setEmail('')
+                setPassword('')
+                setRePassword('')
+
+            })
+      .catch((error) => {
+        console.error('API request error:', error);
+      });
+    }
+
+
   return (
     <div className='all_content5'>
         <div className='all_content52'>
@@ -20,19 +49,23 @@ const Signup = () => {
             </Link>
            </div>
                 <div className="title5">Sign Up</div>
-                <form action="#">
+                <form onSubmit={(e)=>{handleSignup(e)}}>
                     <div className="input-boxes5">
                     <div className="input-box5">
                         <FaUser className='sigin_icons5'/>
-                        <input type="email" placeholder="Enter your email / user" required />
+                        <input value={user} onChange={(e)=>{setUser(e.target.value)}} type="text" placeholder="Enter your user" required />
                     </div>
                     <div className="input-box5">
                         <FaEnvelope className='sigin_icons5' />
-                        <input type="text" placeholder="Enter your email" required />
+                        <input value={email} onChange={(e)=>{setEmail(e.target.value)}} type="email" placeholder="Enter your email" required />
                     </div>
                     <div className="input-box5">
                         <FaLock className='sigin_icons5'/>
-                        <input type="password" placeholder="Enter your password" required />
+                        <input value={password} onChange={(e)=>{setPassword(e.target.value)}} type="password" placeholder="Enter your password" required />
+                    </div>
+                    <div className="input-box5">
+                        <FaLock className='sigin_icons5'/>
+                        <input value={rePassword} onChange={(e)=>{setRePassword(e.target.value)}} type="password" placeholder="repeat your password" required />
                     </div>
                     <div className="button5 input-box5">
                         <input type="submit" value="Submit" />

@@ -8,7 +8,7 @@ const Bannerimg = () => {
           <div className='text_container'>
             <span className='text1'>Latest trending </span>
             <span className='text2'>Electronic items</span>
-            <Link to={'/filter'}>
+            <Link style={{textDecoration:'none'}} to={'/filter'}>
             <button>Learn more</button>
             </Link>
           </div>

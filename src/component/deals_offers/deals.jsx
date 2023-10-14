@@ -10,12 +10,10 @@ import axios from 'axios'
 const Deals = () => {
         const [offers, setOffers] = useState([]);
 
-  // const [selectedProductId, setSelectedProductId] = useState(null);
 
   useEffect(() => {
-    // Make the API request when the component mounts
     axios
-      .get('https://digitalamazonproject.azurewebsites.net/api/product/offers')
+      .get('https://amazon-digital-prod.azurewebsites.net/api/product/offers' )
       .then((response) => {
         setOffers(response.data ) ; // Assuming the response contains an array of products
 
@@ -36,7 +34,7 @@ const Deals = () => {
       {offers.map((offer) => {
         return (
         <div className='sale_box'>
-                <Link to={'/productview'}>
+                <Link style={{textDecoration:'none'}} to={'/productview'}>
                 <img src={offer.image} alt="Laptop" />
                 </Link>
                 {/* <span className='product_description'>Laptops</span>         */}

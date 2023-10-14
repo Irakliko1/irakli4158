@@ -3,6 +3,7 @@ import './offers.css'
 import chevron from '../../assets/logo/right_chevron.png'
 import axios from 'axios'
 import { useEffect,useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Offers = () => {
   const [offers, setOffers] = useState([]);
@@ -12,7 +13,7 @@ const Offers = () => {
   useEffect(() => {
     // Make the API request when the component mounts
     axios
-      .get('https://digitalamazonproject.azurewebsites.net/api/product/latestproducts')
+      .get('https://amazon-digital-prod.azurewebsites.net/api/product/latestproducts')
       .then((response) => {
         setOffers(response.data ) ; // Assuming the response contains an array of products
 
@@ -35,24 +36,15 @@ const Offers = () => {
         </div>
         <div className='product'>
           {offers.map((offer) => {
-            return (
-              <>
-              <div className='productbox_container'>
+            return <Link style={{textDecoration:'none'}} key={offer.id} className='productbox_container' to={`/productview/${offer.id}`}>
                 <div className='prise_container'>
                   <span className='description'>{offer.brand}</span>
                   <span className='prises'>from <br/> USD {offer.price}</span>
                 </div>
                 <img src={offer.images} alt="" />
-                </div>
-              <div className='productbox_container'>
-                <div className='prise_container'>
-                  <span className='description'>{offer.brand}</span>
-                  <span className='prises'>from <br/> USD {offer.price}</span>
-                </div>
-                <img src={offer.images} alt="" />
-                </div>
-              </>
-              )
+              </Link>
+         
+              
               
             })}
         </div>  

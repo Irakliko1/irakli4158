@@ -85,6 +85,7 @@
 
 .recomended_img img {
     width: 100px;
+    cursor: pointer;
     
 }
 .items_box {

@@ -2,19 +2,22 @@ import React from 'react'
 import './navigarion.css'
 import axios from 'axios';
 import { useEffect,useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
 
 
 const Navigation = () => {
-  const [offers, setOffers] = useState([]);
+  const [categpres, setCategories] = useState([]);
 
-  // const [selectedProductId, setSelectedProductId] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams()
+  const params = Object.fromEntries([...searchParams]);
+  const navigate = useNavigate()
 
   useEffect(() => {
-    // Make the API request when the component mounts
     axios
-      .get('https://digitalamazonproject.azurewebsites.net/api/product/categories      ')
+      .get('https://amazon-digital-prod.azurewebsites.net/api/product/categories')
       .then((response) => {
-        setOffers(response.data ) ; // Assuming the response contains an array of products
+        setCategories(response.data ) ; // Assuming the response contains an array of products
 
       })
       .catch((error) => {
@@ -23,12 +26,20 @@ const Navigation = () => {
 
   }, []); 
 
+  const handleCurrentCategory = (id) => {
+    setSearchParams({
+      ...params,
+      currentCategory: id,
+    })
+    navigate(`/filter?currentCategory=${id}`)
+};
+
   return (
       <div className='navigation_container'>
         <ul>
-        {offers.map((navigation) => {
+        {categpres.map((category) => {
           return (
-              <li>{navigation.name}</li>
+              <li onClick={()=>{handleCurrentCategory(category.id)}}>{category.name}</li>
               )
             
           })}
