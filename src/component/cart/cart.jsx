@@ -8,7 +8,7 @@ import security from '../../assets/prodacts/security.png';
 import message from '../../assets/prodacts/message.png';
 import deliver from '../../assets/prodacts/deliver.png';
 
-// dsadasdsdsadds
+// dsadasdsdsadddsds
 
 const Cart = () => {
   const navigate = useNavigate();
