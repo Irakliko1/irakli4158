@@ -10,6 +10,8 @@ import dot from '../../assets/filterpageicons/dot.png';
 import listview from '../../assets/filterpageicons/listview.png'
 import fav from '../../assets/prodacts/add-to-cart-3046.png';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { addItemTocart } from '../../slices/cart/cart.slice';
 
 import DualRangeSlider from '../pricerangeslider';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -31,7 +33,7 @@ const Filter = () => {
 
     const token = JSON.parse(localStorage.getItem('token'))
 
-
+    const dispatch = useDispatch()
 
     useEffect(() => {
       axios
@@ -60,29 +62,15 @@ const Filter = () => {
         setSearchParams({
             ...params,
             currentCategory: id,
-        })
-  };
+        })};
 
   const handlelink = (id) => {navigate(`/productview/${id}`)}
 
-  const handleAddToCart = (id) => {
-    axios
-            .post('https://amazon-digital-prod.azurewebsites.net/api/cart/addincart',
-            {
-                productId: id,
-            },
-            {headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json'
-            },}
-            )
-            .then((response) => {
-              console.log(response.ok)
-            })
-      .catch((error) => {
-        console.error('API request error:', error);
-      });
-  }
+
+      const handleAddToCart = (id) => {
+        dispatch(addItemTocart(id))
+      }
+  
     
     
   const toggleCategory = () => {
@@ -111,9 +99,9 @@ const Filter = () => {
                     <img src={Chevron} alt="" className={isCategoryOpen ? 'rotate' : ''} />
                 </div>
                 <ul className='category_ul' style={{ display: isCategoryOpen ? 'flex' : 'none' }}>
-                {categories.map((category) => {
+                {categories.map((category,i) => {
           return (
-              <li onClick={()=>{handleCurrentCategory(category.id)}}>{category.name}</li>
+              <li key={i+987655678797925} onClick={()=>{handleCurrentCategory(category.id)}}>{category.name}</li>
               )
             
           })}
@@ -128,15 +116,14 @@ const Filter = () => {
                     <img src={Chevron} alt="" className={isBrandsOpen ? 'rotate' : ''} />
                 </div>
                 <ul className='brand_ul' style={{ display: isBrandsOpen ? 'flex' : 'none' }}>
-                {productes.map((product) => {
-        return (
-                    <li>
-                        <label>
-                            <input type="checkbox" name="" id="" />{product.brand}
-                        </label>
-                    </li>
-           )
-              })}
+                {productes.map((product,i) => {
+                    return (
+                            <li key={i+989888989892627}>
+                                <label>
+                                    <input type="checkbox" name="" id="" />{product.brand}
+                                </label>
+                            </li>
+                )})}
                 </ul>       
             </div>
 
@@ -200,9 +187,9 @@ const Filter = () => {
 
             <div className='nav_box_container'>
              {/* Products */}
-             {productes.map((product) => {
+             {productes.map((product,i) => {
         return (
-                <div className='nav_2'>
+                <div key={i+878762987139127} className='nav_2'>
                     <div className='product_img1'>
                         <img onClick={()=>{handlelink(product.id)}} src={product.images} alt="" />
                     </div>

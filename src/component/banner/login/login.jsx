@@ -2,20 +2,34 @@ import React, { useEffect, useState } from 'react'
 import './login.css'
 import avatar from '../../../assets/logo/Avatar.png'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../../../slices/auth/auth.slice'
+import { Modal } from 'antd';
+
 
 
 const Login = () => {
-  const token = JSON.parse(localStorage.getItem('token'))
-  const [signout, setSignOut] = useState(token)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
+  const dispatch = useDispatch();
 
  const handleSignOut = () => {
-  localStorage.removeItem('token')
-  setSignOut(null)
+  dispatch(logout())
  }
 
- 
+   const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    handleSignOut();
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
 
 
   return ( 
@@ -27,7 +41,7 @@ const Login = () => {
             </div>
             
             <div className='login_buttons'>
-            {signout? (<button onClick={() =>  {handleSignOut()}} className='join_button'>Log out</button>) : 
+            {isLoggedIn? (<button onClick={() =>  {showModal()}} className='join_button'>Log out</button>) : 
             (<>
               <Link to={'/registration'}>
                 <button className='join_button'>Join now</button>
@@ -36,7 +50,9 @@ const Login = () => {
                 <button className='login_button'>Log in</button>
               </Link>
             </>)}
-              
+            <Modal title="Log Out" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okText={'Yes'}>
+              <p>Are you sure ?</p>
+            </Modal>
             </div>
           </div>
           <div className='color_box'>

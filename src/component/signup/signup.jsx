@@ -3,7 +3,9 @@ import './signup.css'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaEnvelope, FaLock, FaUser } from 'react-icons/fa';
-import brend from '../../assets/logo/brand.png'
+import brend from '../../assets/logo/brand.png';
+import { useDispatch } from 'react-redux';
+import { register } from '../../slices/auth/auth.slice';
 
 
 const   Signup = () => {
@@ -12,27 +14,14 @@ const   Signup = () => {
     const [password, setPassword]= useState('')
     const [rePassword, setRePassword]= useState('')
 
+    const dispatch=useDispatch();
+
     const handleSignup = (e) => {
         e.preventDefault()
-        axios
-            .post('https://amazon-digital-prod.azurewebsites.net/api/user/registerUser',
-            {
-                userName: user,
-                password: password,
-                email: email
-            },
-            {headers: {'Content-Type': 'application/json'}}
-            )
-            .then(() => {
-                setUser ('')
-                setEmail('')
-                setPassword('')
-                setRePassword('')
-
-            })
-      .catch((error) => {
-        console.error('API request error:', error);
-      });
+        dispatch(register({user,email,password}))
+        setEmail('');
+        setPassword('');
+        setRePassword('');
     }
 
 

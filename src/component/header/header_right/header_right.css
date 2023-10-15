@@ -11,6 +11,19 @@
     align-items: center;
     flex-direction: column;
     row-gap: 5px;
+    position: relative;
+}
+.icon_container:hover{
+    transform: scale(1.1);
+}
+.icon_container2:hover{
+    transform: scale(1.1);
+}
+.icon_container img:hover{
+    transform: scale(1.1);
+}
+.icon_container2 img:hover{
+    transform: scale(1.1);
 }
 
 .icon_container2{
@@ -68,4 +81,20 @@
         display: flex;
         justify-content: flex-end;
     }
+}
+
+
+.cart_circle{
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    position: absolute;
+    border-radius: 50%;
+    text-align: center;
+    top: 11px;
+    right: 7px;
+    font-weight: 500;
+    color: white;
+    line-height: 1.3;
+
 }

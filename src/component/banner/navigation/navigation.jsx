@@ -37,9 +37,9 @@ const Navigation = () => {
   return (
       <div className='navigation_container'>
         <ul>
-        {categpres.map((category) => {
+        {categpres.map((category,i) => {
           return (
-              <li onClick={()=>{handleCurrentCategory(category.id)}}>{category.name}</li>
+              <li key={i+123} onClick={()=>{handleCurrentCategory(category.id)}}>{category.name}</li>
               )
             
           })}

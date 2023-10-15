@@ -49,6 +49,7 @@
 .main_image6 img {
     width: 300px;
     height: 300px;
+    object-fit: contain;
     cursor: pointer;
     padding: 10px;
 }
@@ -62,6 +63,7 @@
 }
 
 .small_images5 img {
+    object-fit: contain;
     width: 50px;
     height: 50px;
     cursor: pointer;

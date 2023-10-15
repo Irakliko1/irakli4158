@@ -4,14 +4,17 @@ import axios from 'axios';
 import aviable from '../../assets/filterpageicons/Aviable.png';
 import favorite from '../../assets/filterpageicons/fav.png';
 import basket from '../../assets/filterpageicons/basket.png';
-import chat from '../../assets/prodacts/message.png';
+import chat from '../../assets/logo/message.png';
 import circle from '../../assets/filterpageicons/dot.png';
 import star from '../../assets/filterpageicons/rating4.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItemTocart } from '../../slices/cart/cart.slice';
 
 const Detale = ({product, images}) => {
   const token = JSON.parse(localStorage.getItem('token'))
 
   const [selectedImage, setSelectedImage] = useState('');
+  const dispatch = useDispatch()
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
@@ -22,22 +25,7 @@ const Detale = ({product, images}) => {
   },[product])
   
   const handleAddToCart = (id) => {
-    axios
-            .post('https://amazon-digital-prod.azurewebsites.net/api/cart/addincart',
-            {
-                productId: id,
-            },
-            {headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json'
-            },}
-            )
-            .then((response) => {
-              console.log(response.ok)
-            })
-      .catch((error) => {
-        console.error('API request error:', error);
-      });
+    dispatch(addItemTocart(id))
   }
 
   return (
@@ -49,8 +37,8 @@ const Detale = ({product, images}) => {
         </div>
 
         <div className='small_images5'>
-          {images.map((image) => {
-            return <img src={image} alt='' onClick={() => handleImageClick(image)} />
+          {images.map((image,i) => {
+            return <img key={i+986444267} src={image} alt='' onClick={() => handleImageClick(image)} />
           })}
         </div>
       </div>

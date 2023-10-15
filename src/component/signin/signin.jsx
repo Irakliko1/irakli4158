@@ -9,6 +9,8 @@ import facebook from '../../assets/loginicons/facebook.png'
 import twiter from '../../assets/loginicons/twitter.png'
 import linkedin from '../../assets/loginicons/linkedin.png'
 import google from '../../assets/loginicons/google.png'
+import { useDispatch } from 'react-redux';
+import { login } from '../../slices/auth/auth.slice';
 
 
 
@@ -17,25 +19,15 @@ const Signin = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     
+
     const handleSignin = (e) => {
         e.preventDefault();
-        axios
-            .post('https://amazon-digital-prod.azurewebsites.net/api/User/logIn', {
-                email: email,
-                password: password,
-            }, {
-                headers: { 'Content-Type': 'application/json' }
-            })
-            .then((response) => {
-                localStorage.setItem('token', JSON.stringify(response.data.jwt));
-                setEmail('');
-                setPassword('');
-                navigate('/');
-            })
-            .catch((error) => {
-                console.error('API request error:', error);
-            });
+        dispatch(login({email, password}))
+        setEmail('');
+        setPassword('');
+        navigate('/');
         };
   return (
     <div className='all_content5'>

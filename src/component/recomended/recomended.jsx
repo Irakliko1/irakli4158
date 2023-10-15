@@ -32,9 +32,9 @@ const Recomended = () => {
     <div className='recomended_container'>
         <span>Recommended items</span>
         <div className='recomended_container2'>
-        {Recomended.map((recomended) => {
+        {Recomended.map((recomended,i) => {
         return (
-            <>
+            <div key={i+9987554278}>
                 <div className='items_box'>
                     <div className='recomended_img'>
                         <img onClick={()=>{handleClick(recomended.id)}} src={recomended.images} alt="" />
@@ -54,7 +54,7 @@ const Recomended = () => {
                     </div>
                 </div>
                 
-            </>
+            </div>
           
           )
           

@@ -2,72 +2,27 @@ import React, { useEffect, useState } from 'react';
 import './cart.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import chevron from '../../assets/logo/chevron.png';
 import chevronleft from '../../assets/prodacts/chevronleft.png';
 import security from '../../assets/prodacts/security.png';
 import message from '../../assets/prodacts/message.png';
 import deliver from '../../assets/prodacts/deliver.png';
+import { useDispatch } from 'react-redux';
+import { removeItemFromCart } from '../../store/cart/cart';
 
 // dsdssddsdds
-const Cart = () => {
+const Cart = ({removedId, setRemovedId, cartProducts}) => {
   const navigate = useNavigate();
 
   const token = JSON.parse(localStorage.getItem('token'));
 
-  const [removedId, setRemovedId] = useState('');
-  const [cartProducts, setCartProducts] = useState([]);
+  const dispatch = useDispatch()
 
-  useEffect(() => {
-    const fetchCartProducts = async () => {
-      try {
-        const response = await axios.get(
-          'https://amazon-digital-prod.azurewebsites.net/api/cart/getmycartproducts',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-        setCartProducts(response.data);
-      } catch (error) {
-        console.error('API request error:', error);
-      }
-    };
-
-  
-    fetchCartProducts();
-  }, [removedId, token]);
-
-  const removeFromCart = async (id) => {
-    try {
-      const response = await fetch(
-        `https://amazon-digital-prod.azurewebsites.net/api/cart/removefromcart`,
-        {
-          method: 'DELETE',
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ productId: id }),
-        }
-      );
-      if (response.ok) {
-        setRemovedId(id);
-      }
-    } catch (error) {
-      console.error('Error while removing from cart:', error);
-    }
+  const removeFromCart = (id) => {
+  dispatch(removeItemFromCart({token,id}))
   };
 
  
-  const calculateTotalPrice = () => {
-    let totalPrice = 0;
-    for (const item of cartProducts) {
-      totalPrice += item.price;
-    }
-    return totalPrice.toFixed(2);
-  };
+ 
 
   return (
     <div className='cart_container'>
@@ -99,10 +54,6 @@ const Cart = () => {
       </div>
 
       <div className='cart_price_summary'>
-        <div className='cart_total_price'>
-          <span>Total Price:</span>
-          <span>${calculateTotalPrice()}</span>
-        </div>
         <div className='cart_prise'>
           <button onClick={() => navigate('/filter')}>
             <img src={chevronleft} alt="" /> Back to Shop

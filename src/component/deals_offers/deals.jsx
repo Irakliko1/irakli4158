@@ -31,9 +31,9 @@ const Deals = () => {
       </div>
       <div className='prodact_container'>
 
-      {offers.map((offer) => {
+      {offers.map((offer,i) => {
         return (
-        <div className='sale_box'>
+        <div key={i+2355453123} className='sale_box'>
                 <Link style={{textDecoration:'none'}} to={'/productview'}>
                 <img src={offer.image} alt="Laptop" />
                 </Link>

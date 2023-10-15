@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals';
 
 import Layout from './layout';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store/store'
 // import { GlobalStateProvider } from './reducers/auth.reducer';
 
 
@@ -15,7 +17,9 @@ root.render(
   <React.StrictMode> 
 
     <BrowserRouter>
-        <Layout/>
+      <Provider store={store}>
+          <Layout/>
+      </Provider>
     </BrowserRouter>
 
   </React.StrictMode>

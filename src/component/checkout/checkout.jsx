@@ -8,13 +8,23 @@ import paypal from '../../assets/prodacts/paypal.png';
 
 
 
-const Checkout = () => {
-  const subtotal = 500;
+const Checkout = ({cartProducts}) => {
+  
+  
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
+    for (const item of cartProducts) {
+      totalPrice += item.price; 
+    }
+    return totalPrice.toFixed(2);
+  };
+  
+  const subtotal = calculateTotalPrice();
   const discount = ((subtotal * 10)/100);
   const tax = ((subtotal * 2)/100) ;
-
+  
   const totalPrice = subtotal - discount + tax;
-
+  
   return (
     <div className="checkout_container">
       <div className="cupon_container">
@@ -28,15 +38,15 @@ const Checkout = () => {
       <div className="total_container">
         <div className="total">
           <span className="subtotal_span">Subtotal:</span>
-          <span className="total_span1">${subtotal}</span>
+          <span className="total_span1">${calculateTotalPrice()}</span>
         </div>
         <div className="total">
           <span className="subtotal_span">discount:</span>
-          <span className="total_span2">$- {discount}</span>
+          <span className="total_span2">$- {discount.toFixed(2)}</span>
         </div>
         <div className="total">
           <span className="subtotal_span">tax:</span>
-          <span className="total_span3">+ ${tax}</span>
+          <span className="total_span3">+ ${tax.toFixed(2)}</span>
         </div>
         <div className="total_2">
           <span className="subtotal_span2">Total:</span>
