@@ -120,9 +120,9 @@
     background-color: white;
     transition: transform .4s;
 }
-.productbox_container:hover{
+/* .productbox_container:hover{
     transform: scale(1.1);
-}
+} */
 .productbox_container .prise_container {
     display: flex;
     flex-direction: column;
