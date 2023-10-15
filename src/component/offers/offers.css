@@ -122,6 +122,12 @@
     display: flex;
     flex-direction: column;
 }
+
+.prise_container img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
 .productbox_container .prise_container .description{
     font-size: 1em;
     font-weight: 400;
