@@ -41,7 +41,7 @@ const Offers = () => {
                   <span className='description'>{offer.brand}</span>
                   <span className='prises'>from <br/> USD {offer.price}</span>
                 </div>
-                <img src={offer.images} alt="" />
+                <img id='offer-img' src={offer.images} alt="" />
               </Link>
          
               

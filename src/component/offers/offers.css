@@ -23,6 +23,12 @@
     border-bottom-left-radius: 6px;
 }
 
+#offer-img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
 .product {
     display: flex;
     flex-direction: column;
@@ -34,7 +40,6 @@
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     background-color: white;
-    
 }
 
 .product::-webkit-scrollbar {
@@ -123,11 +128,6 @@
     flex-direction: column;
 }
 
-.prise_container img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-}
 .productbox_container .prise_container .description{
     font-size: 1em;
     font-weight: 400;
