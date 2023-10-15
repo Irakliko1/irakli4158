@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import chevronleft from '../../assets/prodacts/chevronleft.png';
 import security from '../../assets/prodacts/security.png';
-import message from '../../assets/prodacts/message.png';
+import message from '../../assets/logo/message.png';
 import deliver from '../../assets/prodacts/deliver.png';
 import { useDispatch } from 'react-redux';
 import { removeItemFromCart } from '../../store/cart/cart';
