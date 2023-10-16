@@ -31,6 +31,8 @@ const Filter = () => {
     const [isPriceRangeOpen, setPriceRangeOpen] = useState(false);
     const [isRatingOpen, setRatingOpen] = useState(false);
 
+    const [toggle, setToggle] = useState(false)
+
     const [min, setMin] = useState(params.priceMin? params.priceMin : 0)
     const [max, setMax] = useState(params.priceMax? params.priceMax : 5000)
 
@@ -116,109 +118,114 @@ const Filter = () => {
 
   return (
     <div className='navigation_container5'>
-        <div className='filter_container'>
-            {/* Category Filter */}
-            <div className={`filter_box ${isCategoryOpen ? 'open' : ''}`}>
-                <div className='nav_head' onClick={toggleCategory}>
-                    <span>Category</span>
-                    <img src={Chevron} alt="" className={isCategoryOpen ? 'rotate' : ''} />
+        <div className='navigation_filters'>
+            <div className='filters_toggle' onClick={() => setToggle(prev => !prev)}>show filters</div>
+            <div className={`filter_container ${!toggle && 'displaynone'}`}>
+                {/* Category Filter */}
+                <div className={`filter_box ${isCategoryOpen ? 'open' : ''}`}>
+                    <div className='nav_head' onClick={toggleCategory}>
+                        <span>Category</span>
+                        <img src={Chevron} alt="" className={isCategoryOpen ? 'rotate' : ''} />
+                    </div>
+                    <ul className='category_ul' style={{ display: isCategoryOpen ? 'flex' : 'none' }}>
+                    {categories.map((category,i) => {
+            return (
+                <li key={i+987655678797925} onClick={()=>{handleCurrentCategory(category.id)}}>{category.name}</li>
+                )
+                
+            })}
+                    </ul>
+                    {isCategoryOpen && <span className='seeall'>See all</span>}
                 </div>
-                <ul className='category_ul' style={{ display: isCategoryOpen ? 'flex' : 'none' }}>
-                {categories.map((category,i) => {
-          return (
-              <li key={i+987655678797925} onClick={()=>{handleCurrentCategory(category.id)}}>{category.name}</li>
-              )
+
+                {/* Brands Filter */}
+                <div className={`filter_box ${isBrandsOpen ? 'open' : ''}`}>
+                    <div className='nav_head' onClick={toggleBrands}>
+                        <span>Brands</span>
+                        <img src={Chevron} alt="" className={isBrandsOpen ? 'rotate' : ''} />
+                    </div>
+                    <ul className='brand_ul' style={{ display: isBrandsOpen ? 'flex' : 'none' }}>
+                    {productes.map((product,i) => {
+                        return (
+                                <li key={i+989888989892627}>
+                                    <label>
+                                        <input type="checkbox" name="" id="" />{product.brand}
+                                    </label>
+                                </li>
+                    )})}
+                    </ul>       
+                </div>
+
             
-          })}
-                </ul>
-                {isCategoryOpen && <span className='seeall'>See all</span>}
-            </div>
-
-            {/* Brands Filter */}
-            <div className={`filter_box ${isBrandsOpen ? 'open' : ''}`}>
-                <div className='nav_head' onClick={toggleBrands}>
-                    <span>Brands</span>
-                    <img src={Chevron} alt="" className={isBrandsOpen ? 'rotate' : ''} />
-                </div>
-                <ul className='brand_ul' style={{ display: isBrandsOpen ? 'flex' : 'none' }}>
-                {productes.map((product,i) => {
-                    return (
-                            <li key={i+989888989892627}>
-                                <label>
-                                    <input type="checkbox" name="" id="" />{product.brand}
-                                </label>
-                            </li>
-                )})}
-                </ul>       
-            </div>
-
-           
-            {/* Price Range */}
-            <div className={`filter_box ${isPriceRangeOpen ? 'open' : ''}`}>
-                <div className='nav_head' onClick={togglePriceRange}>
-                    <span>Price range</span>
-                    <img src={Chevron} alt="" className={isPriceRangeOpen ? 'rotate' : ''} />
-                </div>
-                <div className='priserange_filter' style={{ display: isPriceRangeOpen ? 'block' : 'none' }}>
-                   <div className='pricerange_container'>
-                    <Slider
-                        range={{
-                        draggableTrack: true,
-                        }}
-                        defaultValue={[min, max]}
-                        value={[parseFloat(min), parseFloat(max)]}
-                        min={0}
-                        max={5000}
-                        onChange={(value) => (handleSliderRange(value))}
-                    />
-                    <div className='pricerange_input'>
-                        <input onChange={(e) =>{setMin(parseFloat(e.target.value))}} value={parseFloat(min)} type="number" />
-                        <input onChange={(e) =>{setMax(parseFloat(e.target.value))}} value={parseFloat(max)} type="number" />
+                {/* Price Range */}
+                <div className={`filter_box ${isPriceRangeOpen ? 'open' : ''}`}>
+                    <div className='nav_head' onClick={togglePriceRange}>
+                        <span>Price range</span>
+                        <img src={Chevron} alt="" className={isPriceRangeOpen ? 'rotate' : ''} />
                     </div>
-                    <div className='pricerange_button'>
-                        <button onClick={() => {handleApply()}}> Apply </button>
+                    <div className='priserange_filter' style={{ display: isPriceRangeOpen ? 'block' : 'none' }}>
+                    <div className='pricerange_container'>
+                        <Slider
+                            range={{
+                            draggableTrack: true,
+                            }}
+                            defaultValue={[min, max]}
+                            value={[parseFloat(min), parseFloat(max)]}
+                            min={0}
+                            max={5000}
+                            onChange={(value) => (handleSliderRange(value))}
+                        />
+                        <div className='pricerange_input'>
+                            <input onChange={(e) =>{setMin(parseFloat(e.target.value))}} value={parseFloat(min)} type="number" />
+                            <input onChange={(e) =>{setMax(parseFloat(e.target.value))}} value={parseFloat(max)} type="number" />
+                        </div>
+                        <div className='pricerange_button'>
+                            <button onClick={() => {handleApply()}}> Apply </button>
+                        </div>
                     </div>
-                   </div>
+                    </div>
                 </div>
-            </div>
 
-        
+            
 
-            {/* Rating Filter */}
-            <div className={`filter_box ${isRatingOpen ? 'open' : ''}`}>
-                <div className='nav_head' onClick={toggleRating}>
-                    <span>Rating</span>
-                    <img src={Chevron} alt="" className={isRatingOpen ? 'rotate' : ''} />
+                {/* Rating Filter */}
+                <div className={`filter_box ${isRatingOpen ? 'open' : ''}`}>
+                    <div className='nav_head' onClick={toggleRating}>
+                        <span>Rating</span>
+                        <img src={Chevron} alt="" className={isRatingOpen ? 'rotate' : ''} />
+                    </div>
+                    <ul style={{ display: isRatingOpen ? 'block' : 'none' }}>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="" id="" />
+                                <img src={rait5} alt="" />
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="" id="" />
+                                <img src={rait4} alt="" />
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="" id="" />
+                                <img src={rait3} alt="" />
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="" id="" />
+                                <img src={rait2} alt="" />
+                            </label>
+                        </li>
+                    </ul>
                 </div>
-                <ul style={{ display: isRatingOpen ? 'block' : 'none' }}>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="" id="" />
-                            <img src={rait5} alt="" />
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="" id="" />
-                            <img src={rait4} alt="" />
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="" id="" />
-                            <img src={rait3} alt="" />
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox" name="" id="" />
-                            <img src={rait2} alt="" />
-                        </label>
-                    </li>
-                </ul>
             </div>
         </div>
 
+
+            <div className='nav_box_container'>
         <div className='nav_container'>
             <div className='nav_1'>
                 <h1>Products</h1>
@@ -227,8 +234,6 @@ const Filter = () => {
                     <img className='listview' src={listview} alt="" />
                 </div>
             </div>
-
-            <div className='nav_box_container'>
              {/* Products */}
              {data.map((product,i) => {
         return (
