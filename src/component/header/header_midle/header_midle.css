@@ -96,12 +96,12 @@
     color: var(--gray_500);
 }
 
-.search_container span{
+.search_container a{
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 110px;
-    height: 35px;
+    height: 100%;
     color: var(--dark, #1C1C1C);
     font-family: 'Inter';
     font-size: 0.8em;
@@ -128,7 +128,7 @@
 
 
 @media screen and (max-width: 900px) {
-    .search_container span{
+   .search_container a{
          display: none;
     }
 }
