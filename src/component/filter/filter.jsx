@@ -12,6 +12,7 @@ import fav from '../../assets/prodacts/add-to-cart-3046.png';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addItemTocart } from '../../slices/cart/cart.slice';
+import { Slider } from 'antd';
 
 import DualRangeSlider from '../pricerangeslider';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -19,6 +20,9 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 
 const Filter = () => {
+    const [searchParams, setSearchParams] = useSearchParams()
+    const params = Object.fromEntries([...searchParams]);
+    
     const [categories, setCategories] = useState([]);
     const [productes, setProductes] = useState([]);
 
@@ -27,11 +31,13 @@ const Filter = () => {
     const [isPriceRangeOpen, setPriceRangeOpen] = useState(false);
     const [isRatingOpen, setRatingOpen] = useState(false);
 
-    const [searchParams, setSearchParams] = useSearchParams()
-    const params = Object.fromEntries([...searchParams]);
-    const navigate = useNavigate()
+    const [min, setMin] = useState(params.priceMin? params.priceMin : 0)
+    const [max, setMax] = useState(params.priceMax? params.priceMax : 5000)
 
-    const token = JSON.parse(localStorage.getItem('token'))
+    let data = productes
+
+
+    const navigate = useNavigate()
 
     const dispatch = useDispatch()
 
@@ -47,9 +53,10 @@ const Filter = () => {
     }, []);
 
 
+
     useEffect(() => {
       axios
-        .get( `https://amazon-digital-prod.azurewebsites.net/api/product/products?CategoryId=${params.currentCategory? params.currentCategory : ('')}&PriceFrom=${('')}&PriceTo=${('')}`)
+        .get( `https://amazon-digital-prod.azurewebsites.net/api/product/products?CategoryId=${params.currentCategory? params.currentCategory : ('')}&PriceFrom=${params.priceMin? params.priceMin : ('')}&PriceTo=${params.priceMax? params.priceMax : ('')}`)
         .then((response) => {
             setProductes(response.data ) ; 
         })
@@ -57,6 +64,11 @@ const Filter = () => {
           console.error('API request error:', error);
         });
     }, [searchParams]);
+
+    if(params.searchKey){
+        data = productes.filter((item) => item.name.toLowerCase().includes((params.searchKey).toLowerCase()))
+    }
+    
     
     const handleCurrentCategory = (id) => {
         setSearchParams({
@@ -88,6 +100,19 @@ const Filter = () => {
   const toggleRating = () => {
     setRatingOpen(!isRatingOpen);
   };
+
+  const handleSliderRange = (value) => {
+    setMin(value[0])
+    setMax(value[1])
+  }
+
+  const handleApply = () => {
+    setSearchParams({
+        ...params,
+        priceMin: min,
+        priceMax: max
+    })};
+
 
   return (
     <div className='navigation_container5'>
@@ -135,7 +160,25 @@ const Filter = () => {
                     <img src={Chevron} alt="" className={isPriceRangeOpen ? 'rotate' : ''} />
                 </div>
                 <div className='priserange_filter' style={{ display: isPriceRangeOpen ? 'block' : 'none' }}>
-                    <DualRangeSlider/>
+                   <div className='pricerange_container'>
+                    <Slider
+                        range={{
+                        draggableTrack: true,
+                        }}
+                        defaultValue={[min, max]}
+                        value={[parseFloat(min), parseFloat(max)]}
+                        min={0}
+                        max={5000}
+                        onChange={(value) => (handleSliderRange(value))}
+                    />
+                    <div className='pricerange_input'>
+                        <input onChange={(e) =>{setMin(parseFloat(e.target.value))}} value={parseFloat(min)} type="number" />
+                        <input onChange={(e) =>{setMax(parseFloat(e.target.value))}} value={parseFloat(max)} type="number" />
+                    </div>
+                    <div className='pricerange_button'>
+                        <button onClick={() => {handleApply()}}> Apply </button>
+                    </div>
+                   </div>
                 </div>
             </div>
 
@@ -187,7 +230,7 @@ const Filter = () => {
 
             <div className='nav_box_container'>
              {/* Products */}
-             {productes.map((product,i) => {
+             {data.map((product,i) => {
         return (
                 <div key={i+878762987139127} className='nav_2'>
                     <div className='product_img1'>
