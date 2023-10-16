@@ -74,9 +74,7 @@
     display: none;
 }
 
-.displaynone {
-    display: none;
-}
+
 .nav_container {
     display: flex;
     flex-direction: column;
@@ -202,6 +200,9 @@
     }
     .navigation_filters{
         width: 100%;
+    }
+    .displaynone {
+        display: none;
     }
 
     .nav_1 .grid_list input {
