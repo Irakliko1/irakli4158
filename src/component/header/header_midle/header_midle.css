@@ -28,6 +28,7 @@
     display: flex;
     gap: 30px;
     height: 120px;
+    cursor: pointer;
     background-color: white;
 }
 

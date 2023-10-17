@@ -67,8 +67,8 @@ const Headermidle = () => {
           <input value={searchValue} onChange={(e) => searchSuggestHandler(e)} type="text" placeholder='Search'/>
           <div className='search_results'>
             {searchValue? filteredProducts.map((item,i) => {
-              return  <div key={i+131313131313131} className='search_item'>
-                        <div className='search_item_img' onClick={() =>handleClick(item.id)}>
+              return  <div onClick={() =>handleClick(item.id)} key={i+131313131313131} className='search_item'>
+                        <div className='search_item_img' >
                           <img src={item.images[0]} alt="" />
                         </div>
                         <div className='search_item_span'>
