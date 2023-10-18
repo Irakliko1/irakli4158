@@ -101,6 +101,13 @@
     color:var(--primary-gradient);
     
 }
+
+@media (max-width:360px) {
+    .cart_button_container :nth-child(2){
+        display: none;
+    }
+    
+}
 .cart_button_container button {
     width: 100px;
     height: 30px;
@@ -152,6 +159,13 @@
     justify-content: space-between;
     align-items: center;
 }
+@media (max-width:600px) {
+    .delivery_container{
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
 
 .delivery_1 {
     display: flex;

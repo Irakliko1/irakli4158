@@ -67,6 +67,16 @@
     font-size: 0.9em;
 }
 
+.search_item .search_item_span .price_span{
+    color: red;
+    width: 62px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 28px;
+    text-align: center;
+    background-color: #FFE3E3;
+}
+
 .search_container .search_img {
     display: none;
     width: 22px;

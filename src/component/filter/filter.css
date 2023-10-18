@@ -80,6 +80,7 @@
     flex-direction: column;
     width: 100%;
     border-radius: 6px;
+    gap: 5px;
 }
 
 .nav_1 {
@@ -115,6 +116,7 @@
     border-radius: 6px;
     transition: transform .4s;
 }
+
 .nav_2:hover{
     transform: scale(1.1);
 }
@@ -129,6 +131,7 @@
     margin-bottom: 10px;
 }
 
+
 @media screen and (max-width: 950px) {
     .nav_box_container {
         display: flex;
@@ -137,26 +140,22 @@
         row-gap: 30px;
     }
     .nav_2 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-        width: 30%;
-        min-width: 190px;
-        flex-wrap: wrap;
+        padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    font-size: 0.85em;
     }
     .nav_2 .prise_description .rating_box .order_info {
         display: none;
     }
-    .nav_2 .prise_description  .spans_cont {
-        display: none;
-    }
+    
     .nav_2 .prise_description {
-        padding: 0 0 20px 0;
+        padding: 15px 0 20px 20px;
     }
-    .nav_2 .favorite {
-        display: none;
-    }
+    
 }
 @media screen and (max-width: 800px) {
     .nav_box_container {
@@ -174,6 +173,9 @@
         height: 85px;
     }
     .nav_2 {
+        column-gap:10px;
+        height: auto;
+        padding-bottom: 10px;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -355,9 +357,9 @@
   margin: 0;
 }
 
-.pricerange_input input[type=number] {
+/* .pricerange_input input[type=number] {
   -moz-appearance: textfield;
-}
+} */
 
 .pricerange_container button {
     align-items: center;

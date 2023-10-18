@@ -260,7 +260,7 @@ const Filter = () => {
                             </div>
                         </div>
                         <div className='spans_cont'>
-                            <span className='lorem'> {product.brand} {product.model}</span>
+                            <span className='lorem'> {product.brand} </span>
                             <span onClick={()=>{handlelink(product.id)}} className='view_detail'>View details</span>
                         </div>
                     </div>

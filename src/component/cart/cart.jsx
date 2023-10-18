@@ -58,7 +58,7 @@ const Cart = ({removedId, setRemovedId, cartProducts}) => {
           <button onClick={() => navigate('/filter')}>
             <img src={chevronleft} alt="" /> Back to Shop
           </button>
-          <button>Remove All</button>
+          <button disabled >Remove All</button>
         </div>
       </div>
 
@@ -68,8 +68,8 @@ const Cart = ({removedId, setRemovedId, cartProducts}) => {
             <img src={message} alt="" />
           </div>
           <div className='delivery_2'>
-            <span className='delivery_span1'>Customer Support</span>
-            <span className='delivery_span2'>Have you ever finally just </span>
+            <span className='delivery_span1'>Secure payment</span>
+            <span className='delivery_span2'>Have you ever finally just  </span>
           </div>
         </div>
 
@@ -88,7 +88,7 @@ const Cart = ({removedId, setRemovedId, cartProducts}) => {
             <img src={deliver} alt="" />
           </div>
           <div className='delivery_2'>
-            <span className='delivery_span1'>Customer Support</span>
+            <span className='delivery_span1'>Free delivery</span>
             <span className='delivery_span2'>Have you ever finally just </span>
           </div>
         </div>

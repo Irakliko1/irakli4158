@@ -73,7 +73,7 @@ const Headermidle = () => {
                         </div>
                         <div className='search_item_span'>
                           <span onClick={() => handleClick(item.id)}>{item.name}</span>
-                          <span>${item.price}</span>
+                          <span className='price_span'>${item.price}</span>
                         </div>
                       </div>
             }) : ''}

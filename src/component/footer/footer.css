@@ -109,6 +109,12 @@
     column-gap: 5px;
     width: 110px;
 }
+@media (max-width:400px) {
+    .change_language{
+        display: none;
+    }
+    
+}
 .change_language .usa {
     width: 24px;
     height: 17px;
