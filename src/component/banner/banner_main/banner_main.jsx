@@ -4,6 +4,8 @@ import Navigation from '../navigation/navigation'
 import Bannerimg from '../banner_img/banner_img'
 import Login from '../login/login'
 
+// dsalkdsajds
+
 const Bannermain = () => {
   return (
     <div className='banner_container'>
