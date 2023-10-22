@@ -15,7 +15,7 @@ const Deals = () => {
     axios
       .get('https://amazon-digital-prod.azurewebsites.net/api/product/offers' )
       .then((response) => {
-        setOffers(response.data ) ; // Assuming the response contains an array of products
+        setOffers(response.data ) ;
 
       })
       .catch((error) => {

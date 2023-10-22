@@ -121,7 +121,7 @@ const Filter = () => {
         <div className='navigation_filters'>
             <div className='filters_toggle' onClick={() => setToggle(prev => !prev)}>show filters</div>
             <div className={`filter_container ${!toggle && 'displaynone'}`}>
-                {/* Category Filter */}
+                {/* Category Filter.......... */}
                 <div className={`filter_box ${isCategoryOpen ? 'open' : ''}`}>
                     <div className='nav_head' onClick={toggleCategory}>
                         <span>Category</span>
@@ -138,7 +138,7 @@ const Filter = () => {
                     {isCategoryOpen && <span className='seeall'>See all</span>}
                 </div>
 
-                {/* Brands Filter */}
+                {/* Brands Filter ................ */}
                 <div className={`filter_box ${isBrandsOpen ? 'open' : ''}`}>
                     <div className='nav_head' onClick={toggleBrands}>
                         <span>Brands</span>
@@ -157,7 +157,7 @@ const Filter = () => {
                 </div>
 
             
-                {/* Price Range */}
+                {/* Price Range .............*/}
                 <div className={`filter_box ${isPriceRangeOpen ? 'open' : ''}`}>
                     <div className='nav_head' onClick={togglePriceRange}>
                         <span>Price range</span>
@@ -188,7 +188,7 @@ const Filter = () => {
 
             
 
-                {/* Rating Filter */}
+                {/* Rating Filter .............*/}
                 <div className={`filter_box ${isRatingOpen ? 'open' : ''}`}>
                     <div className='nav_head' onClick={toggleRating}>
                         <span>Rating</span>
@@ -234,7 +234,7 @@ const Filter = () => {
                     <img className='listview' src={listview} alt="" />
                 </div>
             </div>
-             {/* Products */}
+             {/* Products ..............*/}
              {data.map((product,i) => {
         return (
                 <div key={i+878762987139127} className='nav_2'>

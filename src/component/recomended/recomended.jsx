@@ -7,15 +7,12 @@ import { useNavigate } from 'react-router-dom';
 const Recomended = () => {
     const [Recomended, setRecomended] = useState([]);
     const navigate = useNavigate()
-
-    // const [selectedProductId, setSelectedProductId] = useState(null);
   
     useEffect(() => {
-      // Make the API request when the component mounts
       axios
         .get('https://amazon-digital-prod.azurewebsites.net/api/product/mostdemandproducts')
         .then((response) => {
-            setRecomended(response.data ) ; // Assuming the response contains an array of products
+            setRecomended(response.data ) ; 
   
         })
         .catch((error) => {

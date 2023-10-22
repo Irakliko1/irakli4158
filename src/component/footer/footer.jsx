@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './footer.css'; // Import your CSS for styling
+import './footer.css';
 import brand from '../../assets/logo/brand.png';
 import chevron from '../../assets/logo/chevron.png';
 import arrowup from '../../assets/logo/chevronup.png';

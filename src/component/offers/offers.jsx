@@ -11,11 +11,10 @@ const Offers = () => {
   // const [selectedProductId, setSelectedProductId] = useState(null);
 
   useEffect(() => {
-    // Make the API request when the component mounts
     axios
       .get('https://amazon-digital-prod.azurewebsites.net/api/product/latestproducts')
       .then((response) => {
-        setOffers(response.data ) ; // Assuming the response contains an array of products
+        setOffers(response.data ) ; 
 
       })
       .catch((error) => {

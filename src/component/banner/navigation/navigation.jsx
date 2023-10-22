@@ -17,7 +17,7 @@ const Navigation = () => {
     axios
       .get('https://amazon-digital-prod.azurewebsites.net/api/product/categories')
       .then((response) => {
-        setCategories(response.data ) ; // Assuming the response contains an array of products
+        setCategories(response.data ) ; 
 
       })
       .catch((error) => {

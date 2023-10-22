@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './slider.css'; // Custom CSS for styling the price range slider
+import './slider.css'; 
 
 function PriceRangeSlider() {
-  const [minPrice, setMinPrice] = useState(0); // Initial minimum price
-  const [maxPrice, setMaxPrice] = useState(1000); // Initial maximum price
+  const [minPrice, setMinPrice] = useState(0); 
+  const [maxPrice, setMaxPrice] = useState(1000); 
 
   const handleMinPriceChange = (e) => {
     setMinPrice(parseInt(e.target.value));
@@ -18,16 +18,16 @@ function PriceRangeSlider() {
       <input
         type="range"
         min={0}
-        max={2000} // Set your desired max price
-        step={10} // Set the step interval
+        max={2000} 
+        step={10} 
         value={minPrice}
         onChange={handleMinPriceChange}
       />
       <input
         type="range"
         min={0}
-        max={2000} // Set your desired max price
-        step={10} // Set the step interval
+        max={2000}
+        step={10} 
         value={maxPrice}
         onChange={handleMaxPriceChange}
       />

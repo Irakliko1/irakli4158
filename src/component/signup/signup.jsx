@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './signup.css'
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { FaEnvelope, FaLock, FaUser } from 'react-icons/fa';
 import brend from '../../assets/logo/brand.png';
 import { useDispatch } from 'react-redux';
