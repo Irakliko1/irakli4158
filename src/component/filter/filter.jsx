@@ -34,7 +34,7 @@ const Filter = () => {
     const [toggle, setToggle] = useState(false)
 
     const [min, setMin] = useState(params.priceMin? params.priceMin : 0)
-    const [max, setMax] = useState(params.priceMax? params.priceMax : 5000)
+    const [max, setMax] = useState(params.priceMax? params.priceMax : 500)
 
     let data = productes
 
@@ -172,7 +172,7 @@ const Filter = () => {
                             defaultValue={[min, max]}
                             value={[parseFloat(min), parseFloat(max)]}
                             min={0}
-                            max={5000}
+                            max={500}
                             onChange={(value) => (handleSliderRange(value))}
                         />
                         <div className='pricerange_input'>

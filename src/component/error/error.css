@@ -2,7 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 .error_container img{
     width: 50%;
+    height: 100%;
+    height: 100%;
 }
