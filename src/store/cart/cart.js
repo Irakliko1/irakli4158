@@ -12,7 +12,7 @@ export const removeItemFromCart = createAsyncThunk(
     async ({token, id}) => {
       try {
         const response = await fetch(
-          `https://amazon-digital-prod.azurewebsites.net/api/cart/removefromcart`,
+          `https://digitalinstitute-amazon.azurewebsites.net/api/cart/removefromcart`,
           {
             method: 'DELETE',
             headers: {

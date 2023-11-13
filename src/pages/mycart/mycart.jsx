@@ -20,7 +20,7 @@ const Mycart = () => {
     const fetchCartProducts = async () => {
       try {
         const response = await axios.get(
-          'https://amazon-digital-prod.azurewebsites.net/api/cart/getmycartproducts',
+          'https://digitalinstitute-amazon.azurewebsites.net/api/cart/getmycartproducts',
           {
             headers: {
               Authorization: `Bearer ${token}`,

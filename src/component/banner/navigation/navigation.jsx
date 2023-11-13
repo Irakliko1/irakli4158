@@ -15,7 +15,7 @@ const Navigation = () => {
 
   useEffect(() => {
     axios
-      .get('https://amazon-digital-prod.azurewebsites.net/api/product/categories')
+      .get('https://digitalinstitute-amazon.azurewebsites.net/api/product/categories')
       .then((response) => {
         setCategories(response.data ) ; 
 

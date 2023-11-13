@@ -22,7 +22,7 @@ const Headermidle = () => {
 
   useEffect(() => {
     axios
-      .get('https://amazon-digital-prod.azurewebsites.net/api/product/products')
+      .get('https://digitalinstitute-amazon.azurewebsites.net/api/product/products')
       .then((response) => {
           setProducts(response.data) ; 
       })

@@ -13,7 +13,7 @@ const Deals = () => {
 
   useEffect(() => {
     axios
-      .get('https://amazon-digital-prod.azurewebsites.net/api/product/offers' )
+      .get('https://digitalinstitute-amazon.azurewebsites.net/api/product/offers' )
       .then((response) => {
         setOffers(response.data ) ;
 

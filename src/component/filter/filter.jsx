@@ -45,7 +45,7 @@ const Filter = () => {
 
     useEffect(() => {
       axios
-        .get('https://amazon-digital-prod.azurewebsites.net/api/product/categories')
+        .get('https://digitalinstitute-amazon.azurewebsites.net/api/product/categories/')
         .then((response) => {
             setCategories(response.data ) ; 
         })
@@ -58,7 +58,7 @@ const Filter = () => {
 
     useEffect(() => {
       axios
-        .get( `https://amazon-digital-prod.azurewebsites.net/api/product/products?CategoryId=${params.currentCategory? params.currentCategory : ('')}&PriceFrom=${params.priceMin? params.priceMin : ('')}&PriceTo=${params.priceMax? params.priceMax : ('')}`)
+        .get( `https://digitalinstitute-amazon.azurewebsites.net/api/product/products?CategoryId=${params.currentCategory? params.currentCategory : ('')}&PriceFrom=${params.priceMin? params.priceMin : ('')}&PriceTo=${params.priceMax? params.priceMax : ('')}`)
         .then((response) => {
             setProductes(response.data ) ; 
         })

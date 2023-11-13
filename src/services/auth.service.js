@@ -15,7 +15,7 @@ const register = (userName, regPassword, regEmail) => {
 }
 
 const login = async (signEmail, signPassword) => {
-    return await authApi.post('user/LogIn', 
+    return await authApi.post('User/LogIn', 
     {
         email: signEmail,
         password: signPassword

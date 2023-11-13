@@ -12,7 +12,7 @@ const Offers = () => {
 
   useEffect(() => {
     axios
-      .get('https://amazon-digital-prod.azurewebsites.net/api/product/latestproducts')
+      .get('https://digitalinstitute-amazon.azurewebsites.net/api/product/latestproducts')
       .then((response) => {
         setOffers(response.data ) ; 
 
